@@ -42,7 +42,7 @@ const DEFAULT_PROJECTS = [
     "title": "Gerente: Minha Loja",
     "description": "O gerente: Minha loja é uma plataforma projetado para a empresa Rede Confiança com uma interface rápida e centralizada que permite aos gerentes acompanhar a performance da loja em tempo real, padronizando o acesso e melhorando a navegação das lideranças operacionais.",
     "technologies": [],
-    "image": "/Simbolo.png",
+    "image": "/portifolio-2026/Simbolo.png",
     "live_url": "https://portifolio-portifolio-gerentes.swntp9.easypanel.host/"
   },
   {
@@ -50,7 +50,7 @@ const DEFAULT_PROJECTS = [
     "title": "Painel de Performance",
     "description": "O Painel de Performance é uma plataforma projetado para a empresa Rede Confiança analisar e acompanhar, em tempo real, os indicadores comerciais por loja, coordenação e colaborador, auxiliando na tomada de decisão e no controle de metas.",
     "technologies": [],
-    "image": "/Simbolo.png",
+    "image": "/portifolio-2026/Simbolo.png",
     "live_url": "https://portifolio-portifolio-performance.swntp9.easypanel.host/"
   },
   {
@@ -58,7 +58,7 @@ const DEFAULT_PROJECTS = [
     "title": "Interlojas Cup",
     "description": "A Interlojas Cup é uma plataforma interativa projetado para a empresa Rede Confiança para divulgar resultados de campeonatos entre lojas, promovendo engajamento, espírito de equipe e reconhecimento de desempenho por meio da gamificação.",
     "technologies": [],
-    "image": "/campeonato.png",
+    "image": "/portifolio-2026/campeonato.png",
     "live_url": "https://rede-confianca-interlojas.lpl0df.easypanel.host/"
   },
   {
@@ -66,7 +66,7 @@ const DEFAULT_PROJECTS = [
     "title": "Painel Financeiro",
     "description": "O Painel financeiro é uma plataforma projetado para a empresa Rede Confiança, interativa e visualmente atrativa para gerenciar, acompanhar e analisar as movimentações financeiras da empresa.",
     "technologies": [],
-    "image": "/Simbolo.png",
+    "image": "/portifolio-2026/Simbolo.png",
     "live_url": "https://portifolio-portifolio-financeiro.swntp9.easypanel.host/"
   }
 ];
