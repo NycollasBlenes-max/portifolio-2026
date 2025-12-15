@@ -1,7 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory, send_file
 from flask_cors import CORS
+import os
+from pathlib import Path
 
-app = Flask(__name__)
+# Configurar caminhos
+BASE_DIR = Path(__file__).parent
+FRONTEND_BUILD_DIR = BASE_DIR / 'frontend' / 'build'
+
+app = Flask(__name__, static_folder=str(FRONTEND_BUILD_DIR), static_url_path='/')
 CORS(app)
 
 # Dados dos projetos (você pode substituir por um banco de dados depois)
@@ -97,6 +103,44 @@ def get_profile():
 def health_check():
     """Endpoint de verificação de saúde da API"""
     return jsonify({"status": "healthy", "message": "API está funcionando!"})
+
+
+# Servir arquivos estáticos do frontend
+@app.route('/<path:path>', methods=['GET'])
+def serve_frontend(path):
+    """Serve arquivos estáticos do frontend React"""
+    file_path = FRONTEND_BUILD_DIR / path
+    
+    # Se o arquivo existe na pasta build, servir
+    if file_path.exists() and file_path.is_file():
+        return send_from_directory(str(FRONTEND_BUILD_DIR), path)
+    
+    # Caso contrário, servir o index.html (para React Router)
+    index_path = FRONTEND_BUILD_DIR / 'index.html'
+    if index_path.exists():
+        return send_file(str(index_path))
+    
+    return jsonify({"error": "Arquivo não encontrado"}), 404
+
+
+# Servir o index.html na raiz
+@app.route('/', methods=['GET'])
+def serve_root():
+    """Serve a página raiz do frontend"""
+    index_path = FRONTEND_BUILD_DIR / 'index.html'
+    if index_path.exists():
+        return send_file(str(index_path))
+    
+    # Se não houver build, retornar mensagem de aviso
+    return jsonify({
+        "message": "API do Portfólio de Nycollas Blenes",
+        "warning": "Frontend não foi buildado. Execute 'npm run build' na pasta frontend",
+        "endpoints": {
+            "projetos": "/api/projects",
+            "perfil": "/api/profile",
+            "saúde": "/api/health"
+        }
+    })
 
 
 if __name__ == '__main__':
