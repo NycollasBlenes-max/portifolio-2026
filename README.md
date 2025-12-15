@@ -16,7 +16,9 @@ Bem-vindo ao meu portfólio! Este é um projeto Full Stack que apresenta meus pr
 
 ## 👨‍💻 Sobre
 
-Sou um **Desenvolvedor Full Stack** apaixonado por criar soluções inovadoras com foco em **IA e Automação**. Neste portfólio, você encontrará alguns dos meus projetos mais relevantes desenvolvidos para empresas e clientes, demonstrando expertise em desenvolvimento web, integrações e otimização de processos.
+Sou desenvolvedor com 1 ano de experiência prática no mercado, especializado em automações, integrações e construção de soluções eficientes. Trabalho com Python, n8n, JavaScript, Flask, HTML5, CSS3 e MySQL, unindo backend, frontend e automações inteligentes para criar sistemas robustos e processos otimizados.
+
+Atualmente curso Análise e Desenvolvimento de Sistemas (2024-2026), sempre buscando evoluir e explorar novas tecnologias. Meu foco é transformar problemas reais em soluções funcionais, escaláveis e de alto impacto para empresas e usuários.
 
 ## ✨ Funcionalidades
 
@@ -163,15 +165,14 @@ Sistema para gerenciar, acompanhar e analisar movimentações financeiras de for
 
 ## 💡 Habilidades
 
-| Tecnologia | Nível | Experiência |
-|-----------|-------|-------------|
-| Python | ⭐⭐⭐⭐⭐ (90%) | Avançado |
-| JavaScript | ⭐⭐⭐⭐☆ (85%) | Avançado |
-| React | ⭐⭐⭐⭐☆ (80%) | Avançado |
-| Flask | ⭐⭐⭐⭐☆ (85%) | Avançado |
-| SQL | ⭐⭐⭐☆☆ (75%) | Intermediário |
-| Docker | ⭐⭐⭐☆☆ (70%) | Intermediário |
-| Git | ⭐⭐⭐⭐☆ (85%) | Avançado |
+| Python |
+| JavaScript |
+| React |
+| Flask |
+| MySQL |
+| HTML5 |
+| CSS3 |
+| N8N |
 
 ## 📧 Contato
 
@@ -180,12 +181,6 @@ Fico feliz em discutir oportunidades, projetos e ideias. Sinta-se livre para ent
 - 📧 **Email**: [cnycollasblenes@gmail.com](mailto:cnycollasblenes@gmail.com)
 - 🐙 **GitHub**: [@NycollasBlenes-max](https://github.com/NycollasBlenes-max)
 - 💼 **LinkedIn**: [Nycollas Blenes](https://www.linkedin.com/in/nycollas-blenes-6a2065262/)
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
-
----
 
 <div align="center">
 
