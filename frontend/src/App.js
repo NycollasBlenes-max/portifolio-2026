@@ -11,7 +11,12 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './App.css';
 
-const API_URL = '/api';
+// Detectar ambiente e configurar URL da API
+const isProduction = process.env.NODE_ENV === 'production';
+const basePath = process.env.PUBLIC_URL || '/';
+const API_URL = isProduction 
+  ? `${basePath}api` 
+  : '/api';
 
 // Dados padrão para fallback
 const DEFAULT_PROFILE = {
