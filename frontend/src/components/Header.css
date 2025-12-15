@@ -1,0 +1,233 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background: var(--bg-section);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.logo-bracket {
+  color: var(--accent-color);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.nav-list a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-list a:hover {
+  color: var(--text-primary);
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Theme Switch Selector - Premium Design */
+.theme-switch {
+  width: 56px;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #2a2a2a;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.theme-switch.light {
+  background: #e5e5e5;
+  border-color: #d0d0d0;
+}
+
+.switch-bg-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  transition: all 0.4s ease;
+  opacity: 0.4;
+}
+
+.switch-bg-icon.sun-bg {
+  left: 7px;
+  color: #6b7280;
+}
+
+.switch-bg-icon.moon-bg {
+  right: 7px;
+  color: #6b7280;
+}
+
+.theme-switch.light .switch-bg-icon.sun-bg {
+  opacity: 0;
+}
+
+.theme-switch.dark .switch-bg-icon.moon-bg {
+  opacity: 0;
+}
+
+.switch-thumb {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.68, -0.15, 0.32, 1.15);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.7rem;
+}
+
+.theme-switch.dark .switch-thumb {
+  left: 30px;
+  background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+}
+
+.theme-switch.light .switch-thumb {
+  left: 2px;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  color: #f59e0b;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.theme-switch:hover {
+  transform: scale(1.05);
+}
+
+.theme-switch:active .switch-thumb {
+  width: 26px;
+}
+
+.theme-switch.dark:active .switch-thumb {
+  left: 26px;
+}
+
+.header-social {
+  display: flex;
+  gap: 12px;
+}
+
+.header-social a {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--card-border);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.header-social a:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 26, 46, 0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav.nav-open {
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .nav-list a {
+    font-size: 1.5rem;
+  }
+
+  .header-social {
+    display: none;
+  }
+}
