@@ -1,13 +1,17 @@
-from flask import Flask, jsonify, send_from_directory, send_file
+from flask import Flask, jsonify, send_file
 from flask_cors import CORS
 import os
-from pathlib import Path
 
 # Configurar caminhos
-BASE_DIR = Path(__file__).parent
-FRONTEND_BUILD_DIR = BASE_DIR / 'frontend' / 'build'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_BUILD_DIR = os.path.join(BASE_DIR, 'frontend', 'build')
 
-app = Flask(__name__, static_folder=str(FRONTEND_BUILD_DIR), static_url_path='/')
+# Criar app Flask com static folder configurado
+app = Flask(
+    __name__,
+    static_folder=FRONTEND_BUILD_DIR,
+    static_url_path=''
+)
 CORS(app)
 
 # Dados dos projetos (você pode substituir por um banco de dados depois)
@@ -17,7 +21,7 @@ projects = [
         "title": "Gerente: Minha Loja",
         "description": "O gerente: Minha loja é uma plataforma projetado para a empresa Rede Confiança com uma interface rápida e centralizada que permite aos gerentes acompanhar a performance da loja em tempo real, padronizando o acesso e melhorando a navegação das lideranças operacionais.",
         "technologies": [],
-        "image": "http://localhost:3000/Simbolo.png",
+        "image": "/Simbolo.png",
         "live_url": "https://portifolio-portifolio-gerentes.swntp9.easypanel.host/"
     },
     {
@@ -25,7 +29,7 @@ projects = [
         "title": "Painel de Performance",
         "description": "O Painel de Performance é uma plataforma projetado para a empresa Rede Confiança analisar e acompanhar, em tempo real, os indicadores comerciais por loja, coordenação e colaborador, auxiliando na tomada de decisão e no controle de metas.",
         "technologies": [],
-        "image": "http://localhost:3000/Simbolo.png",
+        "image": "/Simbolo.png",
         "live_url": "https://portifolio-portifolio-performance.swntp9.easypanel.host/"
     },
     {
@@ -33,7 +37,7 @@ projects = [
         "title": "Interlojas Cup",
         "description": "A Interlojas Cup é uma plataforma interativa projetado para a empresa Rede Confiança para divulgar resultados de campeonatos entre lojas, promovendo engajamento, espírito de equipe e reconhecimento de desempenho por meio da gamificação.",
         "technologies": [],
-        "image": "http://localhost:3000/campeonato.png",
+        "image": "/campeonato.png",
         "live_url": "https://rede-confianca-interlojas.lpl0df.easypanel.host/"
     },
     {
@@ -41,7 +45,7 @@ projects = [
         "title": "Painel Financeiro",
         "description": "O Painel financeiro é uma plataforma projetado para a empresa Rede Confiança, interativa e visualmente atrativa para gerenciar, acompanhar e analisar as movimentações financeiras da empresa.",
         "technologies": [],
-        "image": "http://localhost:3000/Simbolo.png",
+        "image": "/Simbolo.png",
         "live_url": "https://portifolio-portifolio-financeiro.swntp9.easypanel.host/"
     }
 ]
@@ -65,9 +69,11 @@ profile = {
 }
 
 
-@app.route('/')
-def home():
-    """Página inicial da API"""
+# ===== ROTAS DA API (DEVEM VISER ANTES DO CATCH-ALL) =====
+
+@app.route('/api', methods=['GET'])
+def api_home():
+    """Endpoint da API com informações"""
     return jsonify({
         "message": "API do Portfólio de Nycollas Blenes",
         "endpoints": {
@@ -105,43 +111,28 @@ def health_check():
     return jsonify({"status": "healthy", "message": "API está funcionando!"})
 
 
-# Servir arquivos estáticos do frontend
-@app.route('/<path:path>', methods=['GET'])
-def serve_frontend(path):
-    """Serve arquivos estáticos do frontend React"""
-    file_path = FRONTEND_BUILD_DIR / path
-    
-    # Se o arquivo existe na pasta build, servir
-    if file_path.exists() and file_path.is_file():
-        return send_from_directory(str(FRONTEND_BUILD_DIR), path)
-    
-    # Caso contrário, servir o index.html (para React Router)
-    index_path = FRONTEND_BUILD_DIR / 'index.html'
-    if index_path.exists():
-        return send_file(str(index_path))
-    
-    return jsonify({"error": "Arquivo não encontrado"}), 404
+# ===== SERVIR ARQUIVOS ESTÁTICOS E SPA =====
+
+@app.route('/')
+def index():
+    """Serve o arquivo index.html"""
+    return send_file(os.path.join(FRONTEND_BUILD_DIR, 'index.html'))
 
 
-# Servir o index.html na raiz
-@app.route('/', methods=['GET'])
-def serve_root():
-    """Serve a página raiz do frontend"""
-    index_path = FRONTEND_BUILD_DIR / 'index.html'
-    if index_path.exists():
-        return send_file(str(index_path))
+@app.route('/<path:path>')
+def serve_static(path):
+    """Serve arquivos estáticos ou redireciona para index.html"""
+    file_path = os.path.join(FRONTEND_BUILD_DIR, path)
     
-    # Se não houver build, retornar mensagem de aviso
-    return jsonify({
-        "message": "API do Portfólio de Nycollas Blenes",
-        "warning": "Frontend não foi buildado. Execute 'npm run build' na pasta frontend",
-        "endpoints": {
-            "projetos": "/api/projects",
-            "perfil": "/api/profile",
-            "saúde": "/api/health"
-        }
-    })
+    # Se o arquivo existe, servir
+    if os.path.isfile(file_path):
+        return send_file(file_path)
+    
+    # Fallback para index.html (SPA routing)
+    return send_file(os.path.join(FRONTEND_BUILD_DIR, 'index.html'))
 
 
 if __name__ == '__main__':
+    print(f"🚀 Servidor rodando em http://localhost:5013")
+    print(f"📁 Frontend servindo de: {FRONTEND_BUILD_DIR}")
     app.run(host='0.0.0.0', port=5013)
